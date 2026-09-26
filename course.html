@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المادة الدراسية</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 380px;
+            background-color: #0f172a;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            padding: 20px 15px 75px 15px;
+            border: 4px solid #1e293b;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background-color: #1e293b;
+            color: #38bdf8;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .course-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        /* صندوق رفع الملفات */
+        .upload-box {
+            background-color: #1e293b;
+            border: 2px dashed #334155;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .upload-box:hover {
+            border-color: #38bdf8;
+        }
+
+        .upload-box input[type="file"] {
+            display: none;
+        }
+
+        .upload-label {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .upload-icon {
+            font-size: 30px;
+        }
+
+        .upload-text {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .upload-btn {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background-color: #0369a1;
+        }
+
+        /* قائمة الملفات المرفوعة */
+        .files-section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .files-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            background-color: #1e293b;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #cbd5e1;
+        }
+
+        .nav-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e293b;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #334155;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: #38bdf8;
+        }
+
+        .nav-item span.icon {
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <div>
+            <!-- الهيدر مع زر رجوع -->
+            <div class="header">
+                <a href="index.html" class="back-btn">←</a>
+                <div class="course-title" id="courseNameTitle">اسم المادة</div>
+            </div>
+
+            <!-- قسم رفع الملفات -->
+            <div class="upload-box">
+                <label class="upload-label">
+                    <span class="upload-icon">📁</span>
+                    <span class="upload-text" id="fileChosenText">اضغط لاختيار ملف أو صورة لرفعها</span>
+                    <input type="file" id="fileInput" multiple>
+                    <button class="upload-btn" type="button" onclick="document.getElementById('fileInput').click();">اختر ملفات</button>
+                </label>
+            </div>
+
+            <!-- عرض الملفات المرفوعة -->
+            <div class="files-section-title">الملفات المرفوعة:</div>
+            <div class="files-list" id="filesList">
+                <div class="file-item" style="color: #64748b; justify-content: center;">لم يتم رفع أي ملف بعد</div>
+            </div>
+        </div>
+
+        <!-- شريط التنقل السفلي -->
+        <div class="nav-bar">
+            <a href="#" class="nav-item">
+                <span class="icon">👤</span>حسابي
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📚</span>موادي
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">🛠️</span>الأدوات
+            </a>
+            <a href="index.html" class="nav-item">
+                <span class="icon">🏠</span>الرئيسية
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // جلب اسم المادة من الرابط لتغيير العنوان تلقائياً
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseName = urlParams.get('name');
+        if (courseName) {
+            document.getElementById('courseNameTitle').innerText = "مادة " + courseName;
+        }
+
+        // التعامل مع رفع الملفات
+        const fileInput = document.getElementById('fileInput');
+        const filesList = document.getElementById('filesList');
+        const fileChosenText = document.getElementById('fileChosenText');
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                // مسح رسالة "لم يتم رفع أي ملف" إن وجدت
+                if(filesList.children.length === 1 && filesList.children[0].style.color === 'rgb(100, 116, 139)') {
+                    filesList.innerHTML = '';
+                }
+
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    const fileName = fileInput.files[i].name;
+                    fileChosenText.innerText = `تم اختيار: ${fileName}`;
+                    
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `<span>📄 ${fileName}</span> <span style="color: #38bdf8;">تم الرفع</span>`;
+                    filesList.appendChild(fileItem);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
