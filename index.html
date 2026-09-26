@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصتي التعليمية</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 380px;
+            background-color: #0f172a;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            padding: 20px 15px 75px 15px;
+            border: 4px solid #1e293b;
+        }
+
+        /* رأس الصفحة */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .user-avatar {
+            background-color: #1e293b;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #38bdf8;
+        }
+
+        /* قسم الأدوات المتاحة */
+        .tools-section {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .tools-section h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .tools-section p {
+            font-size: 12px;
+            color: #e0f2fe;
+            line-height: 1.4;
+        }
+
+        /* قسم العناوين */
+        .section-title-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .see-all {
+            font-size: 12px;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        /* حاوية المواد لتكون قابلة للتمرير الداخلي إذا لزم الأمر */
+        .courses-list {
+            max-height: 330px;
+            overflow-y: auto;
+            padding-left: 2px;
+        }
+
+        .courses-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .courses-list::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 4px;
+        }
+
+        /* بطاقات المواد الدراسية */
+        .course-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .course-info h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #f8fafc;
+        }
+
+        .course-info .details {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .course-info .price {
+            font-size: 12px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .course-icon {
+            background-color: #0f172a;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        /* شريط التنقل السفلي */
+        .nav-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e293b;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #334155;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: #38bdf8;
+        }
+
+        .nav-item span.icon {
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        
+        <div>
+            <!-- رأس الصفحة -->
+            <div class="header">
+                <div class="greeting">مرحباً بك، الطالب</div>
+                <div class="user-avatar">👨‍🎓</div>
+            </div>
+
+            <!-- قسم الأدوات المتاحة -->
+            <div class="tools-section">
+                <h3>الأدوات المتاحة</h3>
+                <p>اسأل فريق الدعم، تواصل مع المدرسين، وتابع دروسك واختباراتك بكل سهولة.</p>
+            </div>
+
+            <!-- المواد العلمية -->
+            <div class="section-title-container">
+                <div class="section-title">المواد العلمية الدراسية</div>
+                <a href="#" class="see-all">عرض الكل</a>
+            </div>
+
+            <div class="courses-list">
+                <!-- رياضيات -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>رياضيات</h4>
+                        <div class="details">📐 الجبر والهندسة • فصول كاملة</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">➕</div>
+                </div>
+
+                <!-- فيزياء -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>فيزياء</h4>
+                        <div class="details">⚡ الميكانيكا والكهرباء • شرح مبسط</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">⚛️</div>
+                </div>
+
+                <!-- كيمياء -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>كيمياء</h4>
+                        <div class="details">🧪 الكيمياء العضوية وغير العضوية</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">🧪</div>
+                </div>
+
+                <!-- علوم -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>علوم</h4>
+                        <div class="details">🧬 الأحياء والبيئة • دروس تفاعلية</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">🔬</div>
+                </div>
+
+                <!-- عربي -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>لغة عربية</h4>
+                        <div class="details">📖 القواعد، البلاغة، والأدب</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">✍️</div>
+                </div>
+
+                <!-- إنجليزي -->
+                <div class="course-card">
+                    <div class="course-info">
+                        <h4>لغة إنجليزية</h4>
+                        <div class="details">🌐 قواعد، قراءة، ومحادثة</div>
+                        <div class="price">متاح الآن</div>
+                    </div>
+                    <div class="course-icon">🇬🇧</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- شريط التنقل السفلي -->
+        <div class="nav-bar">
+            <a href="#" class="nav-item">
+                <span class="icon">👤</span>
+                حسابي
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📚</span>
+                موادي
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">🛠️</span>
+                الأدوات
+            </a>
+            <a href="#" class="nav-item active">
+                <span class="icon">🏠</span>
+                الرئيسية
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
